@@ -27,7 +27,8 @@ class Message implements \IteratorAggregate, \Countable
 
             $data = $this->decodeContent($content);
 
-            if (!is_array($data)) {
+            // Single request
+            if (array_keys($data) !== range(0, count($data) - 1)) {
                 $data = array($data);
             }
 
@@ -49,7 +50,7 @@ class Message implements \IteratorAggregate, \Countable
      */
     private function decodeContent($content)
     {
-        $data = json_decode($content);
+        $data = json_decode($content, true);
 
         if (null === $data) {
             throw new Exception(Error::PARSE_ERROR(), Error::PARSE_ERROR);
