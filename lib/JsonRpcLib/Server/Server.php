@@ -136,7 +136,7 @@ class Server
             if ($e instanceof Exception) {
                 throw $e;
             }
-            throw new Exception(Error::SERVER_ERROR(), Error::SERVER_ERROR, $e, array('code' => $e->getCode(), 'message' => $e->getMessage()));
+            throw new Exception(Error::SERVER_ERROR(), Error::SERVER_ERROR, $e, array('code' => $e->getCode(), 'exception' => get_class($e), 'message' => $e->getMessage()));
         }
 
         $response = new Output\Response();
