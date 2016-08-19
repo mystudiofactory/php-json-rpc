@@ -133,6 +133,7 @@ class Server
             );
 
         } catch (\Exception $e) {
+            error_log(sprintf("%s [Code] %d [Message] %s [Stack trace] %s", get_class($e), $e->getCode(), $e->getMessage(), $e->getTraceAsString()));
             if ($e instanceof Exception) {
                 throw $e;
             }
